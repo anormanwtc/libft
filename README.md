@@ -1,0 +1,2 @@
+# libft
+wethinkcode library project
