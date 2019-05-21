@@ -1,24 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/21 09:37:30 by anorman           #+#    #+#             */
+/*   Updated: 2019/05/21 09:45:05 by anorman          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 char	*ft_strstr(const char *haystack, const char *needle)
 {
-	int		cntHay;
-	int		cntNee;
+	int		hay;
+	int		nee;
 	char	*found;
 
-	cntHay = 0;
-	while (haystack[cntHay] != '\0')
+	hay = 0;
+	while (haystack[hay] != '\0')
 	{
-		cntNee = 0;
-		found = &haystack[cntHay];
-		while (haystack[cntHay] == needle[cntNee])
+		nee = 0;
+		found = &haystack[hay];
+		while (haystack[hay] == needle[nee])
 		{
-			cntHay++;
-			cntNee++;
+			hay++;
+			nee++;
 		}
-		if (needle[cntNee] == '\0')
+		if (needle[nee] == '\0')
 			return (found);
-		if	(haystack[cntHay] != needle[cntNee])
-			cntHay++;
+		if (haystack[hay] != needle[nee])
+			hay++;
 	}
 	return (NULL);
 }
