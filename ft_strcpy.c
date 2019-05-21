@@ -6,11 +6,11 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 09:36:19 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/21 09:36:26 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/21 10:44:11 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*strcpy(char *dst, const char *src)
+char	*ft_strcpy(char *dst, const char *src)
 {
 	int		cnt;
 

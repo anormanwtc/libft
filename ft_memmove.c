@@ -6,13 +6,13 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 09:32:34 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/21 10:00:52 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/21 10:44:50 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	size_t	cnt;
 

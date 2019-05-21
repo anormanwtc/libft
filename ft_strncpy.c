@@ -6,13 +6,13 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 09:36:58 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/21 09:37:19 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/21 10:43:46 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*strncpy(char *dst, const char *src, size_t len)
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
 	size_t	cnt;
 
