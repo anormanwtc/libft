@@ -6,13 +6,13 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 13:42:09 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/21 13:55:17 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/23 17:17:54 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		strcmp(const char *s1, const char *s2)
+int		ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	cnt;
 	int		exit;
