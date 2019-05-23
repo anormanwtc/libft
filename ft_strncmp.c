@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 14:19:10 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/21 14:22:34 by anorman          ###   ########.fr       */
+/*   Created: 2019/05/21 13:42:09 by anorman           #+#    #+#             */
+/*   Updated: 2019/05/23 13:30:59 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		isprint(int c)
-{
-	if (c > 31 && c < 127)
-		return (8);
-	return (0);
-}
+#include "libft.h"
 
-/*
-** I tested og isprint from 0 to 178 and these are the values it is true for
-** 31 < c < 127 (not inclusive)
-*/
+int		strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	cnt;
+	int		exit;
+
+	cnt = 0;
+	exit = 0;
+	while ((unsigned char)s1[cnt] != '\0' && cnt < n && exit == 0)
+	{
+		if ((unsigned char)s1[cnt] == (unsigned char)s2[cnt])
+			cnt++;
+		else
+			exit = 1;
+	}
+	return ((unsigned char)s1[cnt] - (unsigned char)s2[cnt]);
+}

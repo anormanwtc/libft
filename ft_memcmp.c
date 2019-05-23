@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 09:37:30 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/21 13:41:06 by anorman          ###   ########.fr       */
+/*   Created: 2019/05/21 10:23:43 by anorman           #+#    #+#             */
+/*   Updated: 2019/05/23 14:06:03 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t	hay;
-	size_t	nee;
-	char	*found;
+	size_t	cnt;
+	int		*uchars1;
+	int		*uchars2;
 
-	hay = 0;
-	while (haystack[hay] != '\0' && hay < len)
+	cnt = 0;
+	uchars1 = (int *)s1;
+	uchars2 = (int *)s2;
+	while (cnt < n && uchars1[cnt] == uchars2[cnt])
 	{
-		nee = 0;
-		found = &haystack[hay];
-		while (haystack[hay] == needle[nee])
-		{
-			hay++;
-			nee++;
-		}
-		if (needle[nee] == '\0')
-			return (found);
-		if (haystack[hay] != needle[nee])
-			hay++;
+		cnt++;
 	}
-	return (NULL);
+	return (uchars1[cnt] - uchars2[cnt]);
 }

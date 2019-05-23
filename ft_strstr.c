@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 09:33:08 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/21 10:46:19 by anorman          ###   ########.fr       */
+/*   Created: 2019/05/21 09:37:30 by anorman           #+#    #+#             */
+/*   Updated: 2019/05/23 13:32:24 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	size_t cnt;
+	int		hay;
+	int		nee;
+	char	*found;
 
-	cnt = 0;
-	while (cnt < n)
+	hay = 0;
+	while (haystack[hay] != '\0')
 	{
-		s[cnt] = 0;
-		cnt++;
+		nee = 0;
+		found = (char *)&haystack[hay];
+		while (haystack[hay] == needle[nee])
+		{
+			hay++;
+			nee++;
+		}
+		if (needle[nee] == '\0')
+			return (found);
+		if (haystack[hay] != needle[nee])
+			hay++;
 	}
+	return (NULL);
 }

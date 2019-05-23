@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 09:37:30 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/21 09:45:05 by anorman          ###   ########.fr       */
+/*   Created: 2019/05/21 11:02:25 by anorman           #+#    #+#             */
+/*   Updated: 2019/05/23 13:34:23 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strstr(const char *haystack, const char *needle)
-{
-	int		hay;
-	int		nee;
-	char	*found;
+#include "libft.h"
 
-	hay = 0;
-	while (haystack[hay] != '\0')
+size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
+{
+	size_t	cntdst;
+	size_t	cntsrc;
+
+	cntdst = ft_strlen(dst);
+	cntsrc = 0;
+	while (cntdst < (dstsize - 1))
 	{
-		nee = 0;
-		found = &haystack[hay];
-		while (haystack[hay] == needle[nee])
-		{
-			hay++;
-			nee++;
-		}
-		if (needle[nee] == '\0')
-			return (found);
-		if (haystack[hay] != needle[nee])
-			hay++;
+		dst[cntdst] = src[cntsrc];
+		cntdst++;
+		cntsrc++;
 	}
-	return (NULL);
+	if (cntdst < dstsize)
+		dst[cntdst] = '\0';
+	return (cntdst);
 }

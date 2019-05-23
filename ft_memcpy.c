@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 10:23:43 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/21 10:45:20 by anorman          ###   ########.fr       */
+/*   Created: 2019/05/21 09:33:34 by anorman           #+#    #+#             */
+/*   Updated: 2019/05/23 13:55:57 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-int		ft_memcmp(const void *s1, const void *s2, size_t n)
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
-	size_t	cnt;
-	int		res;
+	size_t		cnt;
+	char		*chardst;
+	const char	*charsrc;
 
 	cnt = 0;
-	res = 0;
+	chardst = dst;
+	charsrc = src;
 	while (cnt < n)
 	{
-		res = res + (int)s1[cnt] - (int)s2[cnt];
+		chardst[cnt] = charsrc[cnt];
 		cnt++;
 	}
-	return (res);
+	return (dst);
 }

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 11:02:25 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/21 11:15:01 by anorman          ###   ########.fr       */
+/*   Created: 2019/05/21 09:36:58 by anorman           #+#    #+#             */
+/*   Updated: 2019/05/23 13:30:16 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	size_t	cntdst;
-	size_t	cntsrc;
+	size_t	cnt;
 
-	cntdst = ft_strlen(dst);
-	cntsrc = 0;
-	while (cnt < (dstsize - 1))
+	cnt = 0;
+	while (src[cnt] != '\0' && cnt < len)
 	{
-		dst[cntdst] = src[cntsrc];
-		cntdst++;
-		cntsrc++;
+		dst[cnt] = src[cnt];
+		cnt++;
 	}
-	if (cntdst < dstsize)
-		dst[cntdst] = '\0';
-	return (cntdst);
+	while (cnt < len)
+	{
+		dst[cnt] = '\0';
+		cnt++;
+	}
+	return (dst);
 }
