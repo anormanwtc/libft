@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 11:02:25 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/24 16:15:15 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/25 13:58:29 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	}
 	if (cntdst < dstsize)
 		dst[cntdst] = '\0';
-	return (cntdst);
+	return (cntdst + dstsize);
 }

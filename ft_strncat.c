@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 10:42:03 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/24 16:15:35 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/25 13:57:19 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strncat(char *s1, const char *s2, size_t n)
 	cnt2 = 0;
 	while (s1[cnt1])
 		cnt1++;
-	while (cnt2 < n)
+	while (cnt2 < n && s2[cnt2])
 	{
 		s1[cnt1] = s2[cnt2];
 		cnt1++;
