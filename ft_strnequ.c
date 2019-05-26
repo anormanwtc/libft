@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 11:02:25 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/26 13:34:55 by anorman          ###   ########.fr       */
+/*   Created: 2019/05/26 13:15:26 by anorman           #+#    #+#             */
+/*   Updated: 2019/05/26 13:19:10 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
 	size_t	cnt;
-	size_t	dstlen;
 
 	cnt = 0;
-	dstlen = ft_strlen(dst);
-	while ((dstlen + cnt) < (dstsize - 1))
-	{
-		dst[dstlen + cnt] = src[cnt];
+	while (s1[cnt] && s1[cnt] == s2[cnt] && cnt < (n - 1))
 		cnt++;
-	}
-	if ((dstsize + cnt) < dstsize)
-		dst[dstsize + cnt] = '\0';
-	return (ft_strlen(src) + dstlen);
+	if (s1[cnt] == s2[cnt])
+		return (1);
+	return (0);
 }
-
-/*
-** only null terminates if there is room as per manual
-*/

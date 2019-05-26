@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 16:39:49 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/25 16:42:02 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/26 13:43:27 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memalloc(size_t size)
 
 	cnt = 0;
 	if (!(mem = malloc(size)))
-		return(NULL);
+		return (NULL);
 	while (cnt < size)
 		mem[cnt++] = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 09:36:58 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/23 13:30:16 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/26 13:32:45 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,8 @@ char	*ft_strncpy(char *dst, const char *src, size_t len)
 	}
 	return (dst);
 }
+
+/*
+** dst remaining len filled with '\0'
+** no termination if len is insificiant (as per the manual)
+*/

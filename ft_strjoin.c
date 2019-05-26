@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 11:02:25 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/26 13:34:55 by anorman          ###   ########.fr       */
+/*   Created: 2019/05/26 13:37:55 by anorman           #+#    #+#             */
+/*   Updated: 2019/05/26 13:42:20 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
+	char	*res;
 	size_t	cnt;
-	size_t	dstlen;
+	size_t	cnt2;
 
+	cnt = ft_strlen(s1) + ft_strlen(s2);
+	if (!(res = (char *)malloc(cnt * (sizeof(char) + 1))))
+		return (NULL);
 	cnt = 0;
-	dstlen = ft_strlen(dst);
-	while ((dstlen + cnt) < (dstsize - 1))
+	while (s1[cnt])
 	{
-		dst[dstlen + cnt] = src[cnt];
+		res[cnt] = s1[cnt];
 		cnt++;
 	}
-	if ((dstsize + cnt) < dstsize)
-		dst[dstsize + cnt] = '\0';
-	return (ft_strlen(src) + dstlen);
+	cnt2 = 0;
+	while (s2[cnt])
+	{
+		res[cnt + cnt2] = s2[cnt + cnt2];
+		cnt2++;
+	}
+	res[cnt + cnt2] = '\0';
+	return (res);
 }
-
-/*
-** only null terminates if there is room as per manual
-*/

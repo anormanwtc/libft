@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 09:36:19 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/23 13:35:28 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/26 13:30:56 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ char	*ft_strcpy(char *dst, const char *src)
 		dst[cnt] = src[cnt];
 		cnt++;
 	}
-	dst[cnt] = src[cnt];
+	dst[cnt] = '\0';
 	return (dst);
 }

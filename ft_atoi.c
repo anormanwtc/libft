@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 09:33:20 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/25 16:11:16 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/26 13:43:15 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	st_isblank(char c)
 	return (0);
 }
 
-int		ft_atoi(const char *str)
+int			ft_atoi(const char *str)
 {
 	int		res;
 	int		cnt;

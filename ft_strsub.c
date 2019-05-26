@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 11:02:25 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/26 13:34:55 by anorman          ###   ########.fr       */
+/*   Created: 2019/05/26 13:21:09 by anorman           #+#    #+#             */
+/*   Updated: 2019/05/26 13:28:45 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	size_t	cnt;
-	size_t	dstlen;
+	char	*substr;
+	int		cnt;
 
+	if (!(substr = (char *)(malloc(len * (sizeof(char) + 1)))))
+		return (NULL);
 	cnt = 0;
-	dstlen = ft_strlen(dst);
-	while ((dstlen + cnt) < (dstsize - 1))
+	while (cnt < len)
 	{
-		dst[dstlen + cnt] = src[cnt];
+		substr[cnt] = s[cnt + start];
 		cnt++;
 	}
-	if ((dstsize + cnt) < dstsize)
-		dst[dstsize + cnt] = '\0';
-	return (ft_strlen(src) + dstlen);
+	substr[cnt] = '\0';
+	return (substr);
 }
 
 /*
-** only null terminates if there is room as per manual
+** if start and len arent valid -> behaviour undefined
+** as such I neglected to check for the end of input s
 */

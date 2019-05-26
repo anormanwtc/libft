@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 11:02:25 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/26 13:34:55 by anorman          ###   ########.fr       */
+/*   Created: 2019/05/26 13:09:50 by anorman           #+#    #+#             */
+/*   Updated: 2019/05/26 13:44:05 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	cnt;
-	size_t	dstlen;
+	unsigned int	index;
+	char			*res;
 
-	cnt = 0;
-	dstlen = ft_strlen(dst);
-	while ((dstlen + cnt) < (dstsize - 1))
+	index = 0;
+	if (!(res = (char *)malloc(ft_strlen(s) * (sizeof(char) + 1))))
+		return (NULL);
+	while (s[index])
 	{
-		dst[dstlen + cnt] = src[cnt];
-		cnt++;
+		res[index] = f(index, s);
+		index++;
 	}
-	if ((dstsize + cnt) < dstsize)
-		dst[dstsize + cnt] = '\0';
-	return (ft_strlen(src) + dstlen);
+	res[index] = '\0';
+	return (res);
 }
-
-/*
-** only null terminates if there is room as per manual
-*/
