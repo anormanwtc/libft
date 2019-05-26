@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 16:46:39 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/25 16:52:33 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/26 16:52:52 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	*ft_strnew(size_t size)
 
 	if (!(str = malloc(size + 1)))
 		return (NULL);
+	cnt = 0;
 	while (cnt <= size)
 		str[cnt++] = '\0';
 	return (str);

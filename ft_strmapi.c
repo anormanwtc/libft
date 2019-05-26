@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/26 13:09:50 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/26 13:44:05 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/26 16:54:08 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (NULL);
 	while (s[index])
 	{
-		res[index] = f(index, s);
+		res[index] = f(index, s[index]);
 		index++;
 	}
 	res[index] = '\0';
