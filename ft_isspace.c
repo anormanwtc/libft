@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/25 16:46:39 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/27 10:38:18 by anorman          ###   ########.fr       */
+/*   Created: 2019/05/26 16:17:11 by anorman           #+#    #+#             */
+/*   Updated: 2019/05/27 12:10:59 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strnew(size_t size)
+int		ft_isspace(char c)
 {
-	char	*str;
-	size_t	cnt;
-
-	if (!(str = malloc(size + 1)))
-		return (NULL);
-	cnt = 0;
-	while (cnt <= size)
-		str[cnt++] = '\0';
-	return (str);
+	if (c == ' ' || c == '\t' || c == '\v')
+		return (1);
+	if (c == '\n' || c == '\r' || c == '\f')
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/26 13:37:55 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/26 13:42:20 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/27 12:26:01 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		cnt++;
 	}
 	cnt2 = 0;
-	while (s2[cnt])
+	while (s2[cnt2])
 	{
-		res[cnt + cnt2] = s2[cnt + cnt2];
+		res[cnt + cnt2] = s2[cnt2];
 		cnt2++;
 	}
 	res[cnt + cnt2] = '\0';

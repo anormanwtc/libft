@@ -6,13 +6,20 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/26 16:16:07 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/26 16:42:06 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/27 13:34:28 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+static int	st_isblank(char c)
+{
+	if (c == ' ' || c == '\n' || c == '\t')
+		return (1);
+	return (0);
+}
+
+char		*ft_strtrim(char const *s)
 {
 	char	*trim;
 	size_t	cnt;
@@ -20,16 +27,19 @@ char	*ft_strtrim(char const *s)
 	size_t	end;
 
 	cnt = 0;
-	while (ft_isblank(s[cnt]) && s[cnt])
+	while (st_isblank(s[cnt]) && s[cnt])
 		cnt++;
 	start = cnt;
-	while (s[cnt++]);
-	while (ft_isblank(s[--cnt]) && cnt > start - 1);
+	while (s[cnt])
+		cnt++;
+	cnt--;
+	while (st_isblank(s[cnt]) && cnt >= start)
+		cnt--;
 	end = cnt;
 	if (!(trim = (char *)malloc((end - start + 2) * sizeof(char))))
 		return (NULL);
 	cnt = 0;
-	while (start + cnt < (end + 1))
+	while (start + cnt < end)
 	{
 		trim[cnt] = s[start + cnt];
 		cnt++;
