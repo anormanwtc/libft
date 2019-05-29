@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int		st_intlen(int n)
+static int	st_intlen(int n)
 {
 	int	res;
 
