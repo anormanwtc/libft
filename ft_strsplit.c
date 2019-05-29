@@ -81,13 +81,13 @@ static char	**st_wordalloc(const char *str, char delim)
 char		**ft_strsplit(char const *s, char c)
 {
 	int		cnt;
-	int		wdcnt;
 	int		letcnt;
+	int		wdcnt;
 	char	**arr;
 
 	cnt = 0;
-	wdcnt = 0;
 	arr = st_wordalloc(s, c);
+	wdcnt = 0;
 	while (s[cnt])
 	{
 		while (s[cnt] == c && s[cnt])
@@ -99,8 +99,8 @@ char		**ft_strsplit(char const *s, char c)
 			cnt++;
 			letcnt++;
 		}
-		arr[wdcnt][letcnt] = '\0';
-		wdcnt++;
+		if (letcnt)
+			arr[wdcnt++][letcnt] = '\0';
 	}
 	arr[wdcnt] = NULL;
 	return (arr);
