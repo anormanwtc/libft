@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int			st_intlen(int n)
+static int		st_intlen(int n)
 {
 	int	res;
 
@@ -42,6 +42,8 @@ static void	st_strrev(char *ans)
 		temp = ans[end];
 		ans[end] = ans[start];
 		ans[start] = temp;
+		end--;
+		start++;
 	}
 }
 
@@ -49,27 +51,27 @@ char		*ft_itoa(int n)
 {
 	char	*ans;
 	int		cnt;
-	int		neg;
 
 	cnt = 0;
 	if (!(ans = (char *)malloc((st_intlen(n) + 1) * sizeof(char))))
 		return (NULL);
+	ans[st_intlen(n)] = '\0';
+	if (n == -2147483648)
+	{
+		ft_strcpy(ans, "-2147483648");
+		return (ans);
+	}
 	if (n < 0)
 	{
-		neg = -1;
+		ans[st_intlen(n) - 1] = '-';
 		n *= -1;
 	}
 	while ((n / 10) > 0)
 	{
-		ans[cnt] = (n % 10) + 48;
-		cnt++;
-		n = n / 10;
+		ans[cnt++] = (n % 10) + 48;
+		n = (n / 10);
 	}
 	ans[cnt] = (n % 10) + 48;
-	cnt++;
-	if (neg == -1)
-		ans[cnt++] = '-';
-	ans[cnt] = '\0';
 	st_strrev(ans);
 	return (ans);
 }

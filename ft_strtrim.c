@@ -36,10 +36,10 @@ char		*ft_strtrim(char const *s)
 	while (st_isblank(s[cnt]) && cnt >= start)
 		cnt--;
 	end = cnt;
-	if (!(trim = (char *)malloc((end - start + 2) * sizeof(char))))
+	if (!(trim = (char *)malloc((end - start + 1) * sizeof(char))))
 		return (NULL);
 	cnt = 0;
-	while (start + cnt < end)
+	while (start + cnt < end + 1)
 	{
 		trim[cnt] = s[start + cnt];
 		cnt++;
