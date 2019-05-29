@@ -62,9 +62,13 @@ char	*ft_strtrim(char const *s);
 char	**ft_strsplit(char const *s, char c);
 char	*ft_itoa(int n);
 void	ft_putchar(char c);
-void	ft_putstr(char *str);
-
+void	ft_putstr(char const *str);
+void	ft_putendl(char const *s);
 void	ft_putnbr(int nbr);
+void	ft_putchar_nd(char c, int fd);
+void	ft_putstr_nd(char const *s, int fd);
+void	ft_putendl_nd(char const *s, int fd);
+void	ft_putnbr_nd(int n, int fd);
 
 int		ft_isblank(char c);
 int		ft_isspace(char c);
