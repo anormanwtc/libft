@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 11:02:25 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/27 11:35:09 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/30 14:43:07 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 
 /*
 ** only null terminates if there is room as per manual
+** only "counts" dstlen up to given dstsize, ie if dstlen > dstsize use dstsize
 */
