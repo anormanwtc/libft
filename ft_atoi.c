@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 09:33:20 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/26 13:43:15 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/30 17:17:34 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ int			ft_atoi(const char *str)
 }
 
 /*
-** It is my understanding that atoi original can overflow so this can too
+** ft_atoi acts like original in its overflow so this can too
 */
