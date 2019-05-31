@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/26 16:16:07 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/31 10:41:41 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/31 16:09:47 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,9 @@ char		*ft_strtrim(char const *s)
 	s_e[0] = cnt;
 	while (s[cnt])
 		cnt++;
-	cnt--;
-	while (st_isblank(s[cnt]) && cnt >= s_e[0])
+	while (st_isblank(s[cnt - 1]) && cnt > s_e[0])
 		cnt--;
-	s_e[1] = cnt;
+	s_e[1] = cnt - 1;
 	if (!(trim = (char *)malloc((s_e[1] - s_e[0] + 2) * sizeof(char))))
 		return (NULL);
 	cnt = 0;

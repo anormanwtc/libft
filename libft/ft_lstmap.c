@@ -6,18 +6,18 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 14:11:16 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/31 15:11:51 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/31 16:11:16 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list  *(*f)(t_list *elem))
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
 	t_list	*result;
 	t_list	*new;
 	t_list	*temp;
-	
+
 	result = NULL;
 	if (lst)
 	{
