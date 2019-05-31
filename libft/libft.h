@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 14:47:41 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/30 14:56:41 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/31 16:01:09 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-t_list			ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 int				ft_isblank(char c);
 int				ft_isspace(char c);
