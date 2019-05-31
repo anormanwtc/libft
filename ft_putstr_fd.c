@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 14:31:10 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/30 14:31:13 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/31 11:08:51 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ void	ft_putstr_fd(char const *s, int fd)
 	int cnt;
 
 	cnt = 0;
-	while (s[cnt])
+	if (s)
 	{
-		write(fd, &s[cnt], 1);
-		cnt++;
+		while (s[cnt])
+		{
+			write(fd, &s[cnt], 1);
+			cnt++;
+		}
 	}
 }

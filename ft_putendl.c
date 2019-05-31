@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 14:31:20 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/30 14:31:26 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/31 11:07:46 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ void	ft_putendl(char const *s)
 	int cnt;
 
 	cnt = 0;
-	while (s[cnt])
+	if (s)
 	{
-		write(1, &s[cnt], 1);
-		cnt++;
+		while (s[cnt])
+		{
+			write(1, &s[cnt], 1);
+			cnt++;
+		}
 	}
 	write(1, "\n", 1);
 }

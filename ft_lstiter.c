@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/26 13:37:55 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/31 10:02:05 by anorman          ###   ########.fr       */
+/*   Created: 2019/05/31 14:07:58 by anorman           #+#    #+#             */
+/*   Updated: 2019/05/31 14:11:08 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	char	*res;
-	size_t	cnt;
-	size_t	cnt2;
+	t_list	*current;
 
-	if (!s1 || !s2)
-		return (NULL);
-	cnt = ft_strlen(s1) + ft_strlen(s2);
-	if (!(res = (char *)malloc(cnt * (sizeof(char) + 1))))
-		return (NULL);
-	cnt = 0;
-	while (s1[cnt])
+	current = lst;
+	while (current)
 	{
-		res[cnt] = s1[cnt];
-		cnt++;
+		f(current);
+		current = current->next;
 	}
-	cnt2 = 0;
-	while (s2[cnt2])
-	{
-		res[cnt + cnt2] = s2[cnt2];
-		cnt2++;
-	}
-	res[cnt + cnt2] = '\0';
-	return (res);
 }

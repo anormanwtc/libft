@@ -6,11 +6,11 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 12:11:07 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/27 12:11:46 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/31 14:41:55 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isblank(char c)
+int		ft_isblank(int c)
 {
 	if (c == ' ' || c == '\t')
 		return (1);

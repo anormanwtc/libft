@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 12:26:11 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/27 16:28:38 by anorman          ###   ########.fr       */
+/*   Updated: 2019/05/31 10:44:34 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,77 +31,31 @@ static int	st_wdcnt(const char *str, char delim)
 	return (wd);
 }
 
-static int	*st_letcnt(const char *str, char delim, int wdcnt)
-{
-	int		cnt;
-	int		wd;
-	int		letcnt;
-	int		*letres;
-
-	cnt = 0;
-	letres = (int *)malloc((wdcnt + 1) * sizeof(int));
-	wd = 0;
-	while (str[cnt])
-	{
-		while (str[cnt] == delim && str[cnt])
-			cnt++;
-		letcnt = 0;
-		while (str[cnt] != delim && str[cnt])
-		{
-			cnt++;
-			letcnt++;
-		}
-		letres[wd] = letcnt;
-		if (letcnt)
-			wd++;
-	}
-	letres[wd] = 0;
-	return (letres);
-}
-
-static char	**st_wordalloc(const char *str, char delim)
-{
-	int		wd;
-	char	**wdstr;
-	int		*letcnt;
-
-	if (!(wdstr = (char **)malloc((st_wdcnt(str, delim) + 1) * sizeof(char *))))
-		return (NULL);
-	letcnt = st_letcnt(str, delim, (st_wdcnt(str, delim)));
-	wd = 0;
-	while (letcnt[wd])
-	{
-		if (!(wdstr[wd] = (char *)malloc((letcnt[wd] + 1) * sizeof(char))))
-			return (NULL);
-		wd++;
-	}
-	return (wdstr);
-}
-
 char		**ft_strsplit(char const *s, char c)
 {
 	int		cnt;
-	int		letcnt;
+	int		startend[2];
 	int		wdcnt;
 	char	**arr;
 
+	if (!s)
+		return (NULL);
+	wdcnt = st_wdcnt(s, c);
+	if (!(arr = (char **)malloc((wdcnt + 1) * sizeof(char *))))
+		return (NULL);
+	arr[wdcnt] = NULL;
 	cnt = 0;
-	arr = st_wordalloc(s, c);
 	wdcnt = 0;
 	while (s[cnt])
 	{
 		while (s[cnt] == c && s[cnt])
 			cnt++;
-		letcnt = 0;
+		startend[0] = cnt;
 		while (s[cnt] != c && s[cnt])
-		{
-			arr[wdcnt][letcnt] = s[cnt];
 			cnt++;
-			letcnt++;
-		}
-		if (letcnt)
-			arr[wdcnt++][letcnt] = '\0';
+		startend[1] = cnt;
+		if (startend[0] != startend[1])
+			arr[wdcnt++] = ft_strsub(s, startend[0], startend[1] - startend[0]);
 	}
-	arr[wdcnt] = NULL;
 	return (arr);
 }
