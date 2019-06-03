@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 12:14:22 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/03 12:20:49 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/03 12:22:34 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 	int		cnt;
 
 	res = (char *)ft_memalloc(size);
-	cnt++;
+	cnt = 0;
 	while (cnt < size)
 	{
 		if (res[cnt] != 0)
