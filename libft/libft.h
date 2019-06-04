@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 14:47:41 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/04 17:15:13 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/04 17:27:26 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 char			*ft_lstcat(t_list *lst);
-void			ft_lstprint(t_list *lst, char delim);
+void			ft_lstprint(t_list *lst, char *space);
 
 #endif
 
