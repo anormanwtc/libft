@@ -6,7 +6,7 @@
 #    By: anorman <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/21 16:00:27 by anorman           #+#    #+#              #
-#    Updated: 2019/06/04 17:18:30 by anorman          ###   ########.fr        #
+#    Updated: 2019/06/05 17:12:43 by anorman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,6 @@ clean:
 	rm -rf *.o
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(LIBA)
 
 re: fclean all
