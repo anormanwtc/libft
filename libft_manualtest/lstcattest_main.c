@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 15:25:24 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/04 17:26:49 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/05 12:44:49 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int			main(void)
 	str = ft_strdup("Helloworld");
 	free(str);
 	lst1 = ft_lstnew(str, 11);
-	ft_lstadd(&lst1, ft_lstnew("more stuff", 11));
-	ft_lstadd(&lst1, ft_lstnew("other", 6));
+	ft_lstaddend(&lst1, ft_lstnew("more stuff", 11));
+	ft_lstaddend(&lst1, ft_lstnew("other", 6));
 	str = ft_lstcat(lst1);
 	printf("%s\n", str);
 	ft_lstprint(lst1, "\n");
