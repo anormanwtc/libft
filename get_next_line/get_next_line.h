@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:38:11 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/05 15:13:28 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/05 16:06:24 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,7 @@
 
 # include <unistd.h>
 
-# define BUFFSIZE 120
-
-typedef struct	s_bmark
-{
-	int				*fd;
-	char			*read;
-	struct s_bmark	*next;
-}				t_bmark;
+#define BUFFSIZE 120
 
 int		get_next_line(const int fd, char **line);
 

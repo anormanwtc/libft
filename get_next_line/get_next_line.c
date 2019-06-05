@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:35:31 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/05 15:16:34 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/05 16:05:49 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,53 +27,71 @@ static char	*st_lstfill(const int fd, t_list **start)
 	int		exit;
 
 	exit = 1;
-	if (!(str = (char *)malloc((BUFFSIZE + 1) * sizeof(char))))
-		return (-1);
-	while ((red = (int)read(fd, str, BUFF_SIZE)) == BUFF_SIZE && exit)
-	{
-		str[red] = '\0';
-		if ((ft_strstr(str, "\n")))
-			exit = 2;
-		if (!(new = ft_lstnew(str, red + 1)))
-			exit = 0;
-		else
-			ft_lstaddend(start, new);
-	}
-	if (exit != 2) //if \n found we keep str
+	if (!(str = (char *)malloc((BUFFSIZE + 1) * sizeof(char))));
+	else
+		while ((red = (int)read(fd, str, BUFF_SIZE)) == BUFF_SIZE && exit)
+		{
+			str[red] = '\0';
+			if ((ft_strstr(str, "\n")))
+				exit = 2;
+			if (!(new = ft_lstnew(str, red + 1)))
+				exit = 0;
+			else
+				ft_lstaddend(start, new);
+		}
+	if (exit != 2) 
 	{
 		free(str);
 		str = NULL;
 	}
-	if (!exit) //if exit == 0 we failed and free all
+	if (!exit || red == -1)
 		ft_lstdel(start, &del);
 	return (str);
 }
+/*
+** ^ if exit = 2 we found and keep str, 
+** if exit = 0 || red = -1 we failed somewhere
+*/
+
+t_list		*st_regplace(const int fd, t_list **bookmark)
+{
+	t_list		*place;
+	
+	if (bookmark)
+	{
+		place = *bookmark;
+		while (place && place->content_size != fd)
+			place = place->next;		
+		if (place)
+			return (place);
+	}
+	place = (t_list *)malloc(sizeof(t_list));
+	ft_lstadd(bookmark, place);
+	if (!(bookmark))
+		return (NULL);
+	place->content_size = fd;
+	return (place);
+}
+/*
+** returns the place matching the fd or makes one if not found
+*/
 
 int			get_next_line(const int fd, char **line)
 {
 	t_list			*lst;
-	static t_bmark	*bookmark;
-	int				red;
+	t_list			*t;
+	static t_list	*bookmark;
+	t_list			*place;
 
-	if (!(bookmark))
-	{
-		bookmark = (t_bmark *)malloc(sizeof(t_bmark));
-		if (!(bookmark))
-			return (-1);
-		bookmark->fd = fd;
-	}
-	else
-		st_regplace(&bookmark);
-	if (BUFF_SIZE == 0 || !(lst = ft_lstnew(NULL, BUFFSIZE + 1)))
-		return (-1);
-	bookmark->read = st_lstfill(fd, &lst);
+	place = st_regplace(fd, &bookmark);
+	lst = NULL;
+	place->content = (void *)st_lstfill(fd, &lst);
+	t = lst;
+	while (t->next)
+		t = t->next;
+	t->content_size = BUFF_SIZE - ft_strlen(ft_strstr(t->content, "\n")) + 1;
 	*line = ft_lstcat(lst);
-	free(str);
-	*line[ft_strlen(*line) - 2] = '\0';
 	ft_lstdel(&lst, &del);
-	if (red)
-		return (1);
-	}
 	return (0);
 }
 
