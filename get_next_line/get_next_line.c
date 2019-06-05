@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:35:31 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/05 16:05:49 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/05 16:38:46 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*st_lstfill(const int fd, t_list **start)
 	int		exit;
 
 	exit = 1;
-	if (!(str = (char *)malloc((BUFFSIZE + 1) * sizeof(char))));
+	if (!(str = (char *)malloc((BUFF_SIZE + 1) * sizeof(char))));
 	else
 		while ((red = (int)read(fd, str, BUFF_SIZE)) == BUFF_SIZE && exit)
 		{
