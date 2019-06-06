@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 09:33:49 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/24 16:16:36 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/06 13:25:56 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 		uchardst[cnt] = ucharsrc[cnt];
 		cnt++;
 	}
-	if (ucharsrc[cnt] == (unsigned char)c)
+	if (cnt < n && ucharsrc[cnt] == (unsigned char)c)
 	{
 		uchardst[cnt] = ucharsrc[cnt];
 		cnt++;
