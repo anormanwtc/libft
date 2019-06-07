@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:35:31 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/07 14:22:31 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/07 16:26:58 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,18 @@ static int	st_lstfill(const int fd, t_list **start, t_bmark *place)
 			len = ft_strlen((ft_strstr(str, "\n")));
 		if ((new = ft_lstnew(str, red - len)))
 			ft_lstaddend(start, new);
+		ft_memcpy(&(new->content[red - len]),  "\0", 1);
 		if (len)
-			place->red = ft_strsub(ft_strstr(str, "\n"), 1, len); /*check l-1*/
+			place->red = ft_strsub(ft_strstr(str, "\n"), 1, len);
 	}
-	if (red)
+	if (red && red != -1)
 		return (fd);
 	return (-1);
 }
 /*
-** ^ if exit = 2 we found and keep str, 
-** if exit = 0 || red = -1 we failed somewhere
+** returns fd for progress or -1 for finished or error
+** puts the first line into a t_list and the unused read part
+** into place->content
 */
 
 t_bmark		*st_regplace(const int fd, t_bmark **bookmark)
@@ -93,10 +95,7 @@ int			get_next_line(const int fd, char **line)
 	place = st_regplace(fd, &bookmark);
 	if (place->red)
 	{
-		ft_putnbr(ft_strlen(place->red));
-		ft_putstr(place->red);
-		ft_putchar('\n');
-		ft_lstnew(place->red, ft_strlen(place->red));
+		lst = ft_lstnew(place->red, ft_strlen(place->red));
 	}
 	else
 		lst = NULL;
