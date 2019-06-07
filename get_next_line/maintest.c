@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:44:46 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/07 16:04:39 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/07 16:44:09 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,14 @@ int	main(void)
 	int		fd;
 
 	fd = open("input", O_RDONLY);
-	get_next_line(fd, &str);
-	if (*str)
+	while (get_next_line(fd, &str))
 	{
-		ft_putstr(str);
-		ft_putchar('\n');
-		free(str);
+		if (*str)
+		{
+			ft_putstr(str);
+			ft_putchar('\n');
+			free(str);
+		}
 	}
-	get_next_line(fd, &str);
-	if (*str)
-	{
-		ft_putstr(str);
-		ft_putchar('\n');
-		free(str);
-	}
-
 	return (0);
 }
