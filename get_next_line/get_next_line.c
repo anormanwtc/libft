@@ -6,12 +6,15 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:35:31 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/05 16:38:46 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/07 11:56:43 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "libft.h"
+
+#include <stdio.h>
+#include <errno.h>
 
 static void	del(void *content, size_t size)
 {
@@ -19,7 +22,7 @@ static void	del(void *content, size_t size)
 	content = NULL;
 }
 
-static char	*st_lstfill(const int fd, t_list **start)
+static char	*st_lstfill(const int fd, t_list **start, t_list place)
 {
 	char	*str;
 	t_list	*new;
@@ -27,24 +30,24 @@ static char	*st_lstfill(const int fd, t_list **start)
 	int		exit;
 
 	exit = 1;
-	if (!(str = (char *)malloc((BUFF_SIZE + 1) * sizeof(char))));
-	else
-		while ((red = (int)read(fd, str, BUFF_SIZE)) == BUFF_SIZE && exit)
-		{
-			str[red] = '\0';
-			if ((ft_strstr(str, "\n")))
-				exit = 2;
-			if (!(new = ft_lstnew(str, red + 1)))
-				exit = 0;
-			else
-				ft_lstaddend(start, new);
-		}
+	if (!(str = (char *)malloc((BUFF_SIZE + 1) * sizeof(char))))
+		return (NULL);
+	while ((red = (int)read(fd, str, BUFF_SIZE)) != -1 && exit == 1)
+	{
+		str[red] = '\0';
+		if ((new = ft_lstnew(str, red - ft_strlen((ft_strstr(str, "\n"))))))
+			ft_lstaddend(start, new);
+		else
+			exit = 0;
+		if (ft_strstr(str, "\n"))
+			exit = 2;
+	}
 	if (exit != 2) 
 	{
 		free(str);
 		str = NULL;
 	}
-	if (!exit || red == -1)
+	if (!exit)
 		ft_lstdel(start, &del);
 	return (str);
 }
@@ -83,18 +86,19 @@ int			get_next_line(const int fd, char **line)
 	static t_list	*bookmark;
 	t_list			*place;
 
+	if (fd = -1 || !line)
+		return (-1);
 	place = st_regplace(fd, &bookmark);
 	lst = NULL;
-	place->content = (void *)st_lstfill(fd, &lst);
-	t = lst;
-	while (t->next)
-		t = t->next;
-	t->content_size = BUFF_SIZE - ft_strlen(ft_strstr(t->content, "\n")) + 1;
+	place->content_size = (void *)st_lstfill(fd, &lst, place);
 	*line = ft_lstcat(lst);
 	ft_lstdel(&lst, &del);
 	return (0);
 }
 
 /*
+** bookmark is the list of in progress reads.
+** place->content is unused but read content
+** place->content_size is the fd associated or -1 for finished
 ** returns 1 for read; 0 for end file; -1 for error
 */
