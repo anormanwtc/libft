@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:35:31 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/07 11:56:43 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/07 12:16:28 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,29 @@ static void	del(void *content, size_t size)
 	content = NULL;
 }
 
-static char	*st_lstfill(const int fd, t_list **start, t_list place)
+static int	st_lstfill(const int fd, t_list **start, t_list *place)
 {
-	char	*str;
 	t_list	*new;
+	char	*str;
 	int		red;
-	int		exit;
+	int		len;
 
-	exit = 1;
+	len = 0;
 	if (!(str = (char *)malloc((BUFF_SIZE + 1) * sizeof(char))))
-		return (NULL);
-	while ((red = (int)read(fd, str, BUFF_SIZE)) != -1 && exit == 1)
+		return (-2);
+	while ((red = (int)read(fd, str, BUFF_SIZE)) != -1 && red && !len)
 	{
 		str[red] = '\0';
-		if ((new = ft_lstnew(str, red - ft_strlen((ft_strstr(str, "\n"))))))
-			ft_lstaddend(start, new);
-		else
-			exit = 0;
 		if (ft_strstr(str, "\n"))
-			exit = 2;
+			len = ft_strlen((ft_strstr(str, "\n")));
+		if ((new = ft_lstnew(str, red - len)))
+			ft_lstaddend(start, new);
+		if (len)
+			place->content = ft_strsub(ft_strstr(str, "\n"), 1, len - 1);
 	}
-	if (exit != 2) 
-	{
-		free(str);
-		str = NULL;
-	}
-	if (!exit)
-		ft_lstdel(start, &del);
-	return (str);
+	if (red)
+		return (fd);
+	return (-1);
 }
 /*
 ** ^ if exit = 2 we found and keep str, 
@@ -86,11 +81,11 @@ int			get_next_line(const int fd, char **line)
 	static t_list	*bookmark;
 	t_list			*place;
 
-	if (fd = -1 || !line)
+	if (fd == -1 || !line)
 		return (-1);
 	place = st_regplace(fd, &bookmark);
 	lst = NULL;
-	place->content_size = (void *)st_lstfill(fd, &lst, place);
+	place->content_size = st_lstfill(fd, &lst, place);
 	*line = ft_lstcat(lst);
 	ft_lstdel(&lst, &del);
 	return (0);
