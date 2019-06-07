@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:35:31 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/06 17:24:09 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/07 11:40:43 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,38 +25,14 @@ static void	del(void *content, size_t size)
 static char	*st_lstfill(const int fd, t_list **start)
 {
 	char	*str;
-	t_list	*new;
-	int		red;
-	int		exit;
 
-	exit = 1;
-	if (!(str = (char *)malloc((BUFF_SIZE + 1) * sizeof(char))))
-		return (NULL);
-	while ((red = (int)read(fd, str, BUFF_SIZE)) != -1 && exit == 1)
-	{
-		str[red] = '\0';
-		if ((new = ft_lstnew(str, red - ft_strlen((ft_strstr(str, "\n"))))))
-			ft_lstaddend(start, new);
-		else
-			exit = 0;
-		if (ft_strstr(str, "\n"))
-			exit = 2;
-	}
-	if (exit != 2) 
-	{
-		free(str);
-		str = NULL;
-	}
-	if (!exit)
-		ft_lstdel(start, &del);
-	return (str);
 }
 /*
 ** ^ if exit = 2 we found and keep str, 
 ** if exit = 0 || red = -1 we failed somewhere
 */
 
-t_list		*st_regplace(const int fd, t_list **bookmark)
+t_list		*st_regplace(const int *fd, char **bookmark)
 {
 	t_list		*place;
 	
@@ -81,21 +57,13 @@ t_list		*st_regplace(const int fd, t_list **bookmark)
 
 int			get_next_line(const int fd, char **line)
 {
-	t_list			*lst;
-	t_list			*t;
 	static t_list	*bookmark;
 	t_list			*place;
 
 	place = st_regplace(fd, &bookmark);
 	lst = NULL;
-	place->content = (void *)st_lstfill(fd, &lst);
-	t = lst;
-	while (t && t->next)
-		t = t->next;
-	if (t)
-		t->content_size =  2;//BUFF_SIZE - ft_strlen(ft_strstr(t->content, "\n")) + 1;
-	*line = ft_lstcat(lst);
-	ft_lstdel(&lst, &del);
+	place->content = (void *)st_read(&fd, line);
+
 	return (0);
 }
 
