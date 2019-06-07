@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 14:31:41 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/31 11:24:53 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/07 12:00:16 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 	{
 		if (!(new->content = (void *)malloc(content_size)))
 			new->content = NULL;
-		ft_memcpy(new->content, content, content_size);
-		new->content_size = content_size;
+		else
+		{
+			ft_memcpy(new->content, content, content_size);
+			new->content_size = content_size;
+		}
 	}
 	else
 	{
