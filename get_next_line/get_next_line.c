@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:35:31 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/07 12:16:28 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/07 14:22:31 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	del(void *content, size_t size)
 	content = NULL;
 }
 
-static int	st_lstfill(const int fd, t_list **start, t_list *place)
+static int	st_lstfill(const int fd, t_list **start, t_bmark *place)
 {
 	t_list	*new;
 	char	*str;
@@ -40,7 +40,7 @@ static int	st_lstfill(const int fd, t_list **start, t_list *place)
 		if ((new = ft_lstnew(str, red - len)))
 			ft_lstaddend(start, new);
 		if (len)
-			place->content = ft_strsub(ft_strstr(str, "\n"), 1, len - 1);
+			place->red = ft_strsub(ft_strstr(str, "\n"), 1, len); /*check l-1*/
 	}
 	if (red)
 		return (fd);
@@ -51,24 +51,32 @@ static int	st_lstfill(const int fd, t_list **start, t_list *place)
 ** if exit = 0 || red = -1 we failed somewhere
 */
 
-t_list		*st_regplace(const int fd, t_list **bookmark)
+t_bmark		*st_regplace(const int fd, t_bmark **bookmark)
 {
-	t_list		*place;
-	
-	if (bookmark)
+	t_bmark		*place;
+
+	if (!(*bookmark))
+	{
+		if (!(*bookmark = (t_bmark *)malloc(sizeof(t_bmark))))
+			return (NULL);
+		(*bookmark)->fd = fd;
+		(*bookmark)->red = NULL;
+		return (*bookmark);
+	}
+	else if (*bookmark)
 	{
 		place = *bookmark;
-		while (place && place->content_size != fd)
+		while (place && place->fd != fd)
 			place = place->next;		
 		if (place)
 			return (place);
 	}
-	place = (t_list *)malloc(sizeof(t_list));
-	ft_lstadd(bookmark, place);
-	if (!(bookmark))
+	if (!(place = (t_bmark *)malloc(sizeof(t_bmark))))
 		return (NULL);
-	place->content_size = fd;
-	return (place);
+	place->fd = fd;
+	place->red = NULL;
+	ft_lstadd((t_list **)bookmark, (t_list *)place);
+	return (*bookmark);
 }
 /*
 ** returns the place matching the fd or makes one if not found
@@ -76,16 +84,23 @@ t_list		*st_regplace(const int fd, t_list **bookmark)
 
 int			get_next_line(const int fd, char **line)
 {
+	static t_bmark	*bookmark;
+	t_bmark			*place;
 	t_list			*lst;
-	t_list			*t;
-	static t_list	*bookmark;
-	t_list			*place;
 
 	if (fd == -1 || !line)
 		return (-1);
 	place = st_regplace(fd, &bookmark);
-	lst = NULL;
-	place->content_size = st_lstfill(fd, &lst, place);
+	if (place->red)
+	{
+		ft_putnbr(ft_strlen(place->red));
+		ft_putstr(place->red);
+		ft_putchar('\n');
+		ft_lstnew(place->red, ft_strlen(place->red));
+	}
+	else
+		lst = NULL;
+	place->fd = st_lstfill(fd, &lst, place);
 	*line = ft_lstcat(lst);
 	ft_lstdel(&lst, &del);
 	return (0);

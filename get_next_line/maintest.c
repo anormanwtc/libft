@@ -6,22 +6,33 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:44:46 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/05 16:53:45 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/07 14:24:39 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <fcntl.h>
 
 int	main(void)
 {
-	char *str;
+	char	*str;
+	int		fd;
 
-	while (get_next_line(1, &str) == 1)
+	fd = open("input", O_RDONLY);
+	get_next_line(fd, &str);
+	if (*str)
 	{
-		printf("%s\n", str);
+		printf("--%s--\n", str);
 		free(str);
 	}
+	get_next_line(fd, &str);
+	if (*str)
+	{
+		printf("--%s--\n", str);
+		free(str);
+	}
+
 	return (0);
 }

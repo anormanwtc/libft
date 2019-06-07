@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 16:34:43 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/05 17:12:24 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/06 16:59:11 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ char	*ft_lstcat(t_list *lst)
 	}
 	if (!(str = malloc((sumsize + 1) * sizeof(char))))
 		return (NULL);
-	str[0] = '\0';
-	str[sumsize] = '\0';
+	ft_bzero(str, sumsize + 1);
 	while (lst)
 	{
 		ft_strcat(str, (char *)lst->content);

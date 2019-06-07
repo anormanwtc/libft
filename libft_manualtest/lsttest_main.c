@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 15:25:24 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/03 16:31:52 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/07 13:38:01 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ int			main(void)
 	t_list	*maped;
 	char	*str;
 
-	str = ft_strdup("Helloworld");
-	lst1 = ft_lstnew(str, 10);
+	lst1 = ft_lstnew("stuff", 10);
 	printf("%s\n", lst1->content);
 	printf("%lu\n", lst1->content_size);
 	ft_lstdelone(&lst1, &del);
