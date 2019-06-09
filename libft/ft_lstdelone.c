@@ -6,17 +6,19 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 14:31:51 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/30 15:35:10 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/09 14:12:22 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void	ft_lstdelone(t_list **alst)
 {
 	if (*alst)
 	{
-		del((*alst)->content, (*alst)->content_size);
+		free((*alst)->content);
+		(*alst)->content = NULL;
+		(*alst)->content_size = 0;
 		free(*alst);
 		*alst = NULL;
 	}
