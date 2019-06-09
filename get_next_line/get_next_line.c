@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:35:31 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/09 17:12:30 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/09 17:53:44 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int			get_next_line(const int fd, char **line)
 		return (-1);
 	place = st_regplace(fd, &bookmark);
 	if (place->red)
-		lst = ft_lstnew(place->red, ft_strlen(place->red));
+		lst = ft_lstnew(place->red, ft_strlen(place->red) + 1);
 	else
 		lst = NULL;
 	place->fd = st_lstfill(fd, &lst, place);

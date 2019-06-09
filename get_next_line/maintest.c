@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:44:46 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/09 17:06:49 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/09 17:22:52 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int	main(void)
 	{
 		if (*str)
 		{
-			ft_putstr(str);
-			ft_putchar('\n');
+			printf("%s\n", str);
 			free(str);
 		}
 	}
