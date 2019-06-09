@@ -6,21 +6,28 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:35:31 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/07 17:01:28 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/09 17:12:30 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "libft.h"
 
-#include <stdio.h>
-#include <errno.h>
-
-static void	del(void *content, size_t size)
+static int	st_prenewline(t_list **start, t_bmark *place)
 {
-	free(content);
-	content = NULL;
-	size = 0;
+	char	*temp;
+	int		linelen;
+
+	temp = ft_strstr(place->red, "\n");
+	linelen = ft_strlen(place->red) - ft_strlen(temp);
+	*start = ft_lstnew(place->red, linelen);
+	temp = ft_strsub(temp, 1, ft_strlen(temp) - 1);
+	free(place->red);
+	place->red = temp;
+	if (place->red && (*start)->content)
+		return (place->fd);
+	else
+		return (-1);
 }
 
 static int	st_lstfill(const int fd, t_list **start, t_bmark *place)
@@ -33,21 +40,23 @@ static int	st_lstfill(const int fd, t_list **start, t_bmark *place)
 	len = 0;
 	if (!(str = (char *)malloc((BUFF_SIZE + 1) * sizeof(char))))
 		return (-2);
+	if (place->red && ft_strstr(place->red, "\n"))
+		return (st_prenewline(start, place));
 	while (!len && (red = (int)read(fd, str, BUFF_SIZE)) != -1 && red)
 	{
 		str[red] = '\0';
 		if (ft_strstr(str, "\n"))
 			len = ft_strlen((ft_strstr(str, "\n")));
-		if ((new = ft_lstnew(str, red - len)))
-			ft_lstaddend(start, new);
+		if (!(new = ft_lstnew(str, red - len + 1)))
+			return (-2);
+		ft_lstaddend(start, new);
 		ft_memcpy(&(new->content[red - len]), "\0", 1);
 		if (len)
-			place->red = ft_strsub(ft_strstr(str, "\n"), 1, len);
+			place->red = ft_strsub(ft_strstr(str, "\n"), 1, len - 1);
 	}
 	if (red == -1)
 		return ((place->fd = -2));
-	place->fd = (red == 0 ? -1 : fd);
-	return (place->fd);
+	return ((place->fd = (red == 0 ? -1 : fd)));
 }
 
 /*
@@ -88,13 +97,29 @@ t_bmark		*st_regplace(const int fd, t_bmark **bookmark)
 ** returns the place matching the fd or makes one if not found
 */
 
+int			st_cleanup(t_bmark **bm, t_bmark *pl, t_list **lst)
+{
+	ft_lstdel(lst);
+	if (pl->fd == -1)
+	{
+		ft_lstdelmid((t_list **)bm, (t_list *)pl);
+		return (0);
+	}
+	else if (pl->fd == -2)
+	{
+		ft_lstdelmid((t_list **)bm, (t_list *)pl);
+		return (-1);
+	}
+	return (1);
+}
+
 int			get_next_line(const int fd, char **line)
 {
 	static t_bmark	*bookmark;
 	t_bmark			*place;
 	t_list			*lst;
 
-	if (fd == -1 || !line)
+	if (fd < 0 || !line)
 		return (-1);
 	place = st_regplace(fd, &bookmark);
 	if (place->red)
@@ -103,11 +128,7 @@ int			get_next_line(const int fd, char **line)
 		lst = NULL;
 	place->fd = st_lstfill(fd, &lst, place);
 	*line = ft_lstcat(lst);
-	ft_lstdel(&lst, &del);
-	if (place->fd != -1)
-		return (1);
-	else
-		return (0);
+	return (st_cleanup(&bookmark, place, &lst));
 }
 
 /*
