@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 15:25:24 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/07 13:38:01 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/10 12:42:48 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static t_list	*map(t_list *elem)
 	char	*str;
 	t_list	*maped;
 	str = ft_strjoin(elem->content, "stuff");
-	free(elem->content);
 	maped = ft_lstnew(str, elem->content_size + 5);
 	free(str);
 	return(maped);
