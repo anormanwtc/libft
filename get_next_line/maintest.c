@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:44:46 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/10 17:47:07 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/10 17:48:25 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(void)
 	fd2 = open("input2", O_RDONLY);
 	while ((error = get_next_line(fd, &str)) && error != -1)
 	{
-		if (error == -1) || get_next_line(fd2, &str2) == -1)
+		if (error == -1 || get_next_line(fd2, &str2) == -1)
 		{
 			printf("error");
 			return (0);
