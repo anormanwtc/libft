@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:44:46 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/10 17:48:25 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/11 10:22:16 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	main(void)
 	int		error;
 	int		i = 1;
 
-	fd = open("input", O_RDONLY);
+	fd = open("war-and-peace.txt", O_RDONLY);
 	fd2 = open("input2", O_RDONLY);
-	while ((error = get_next_line(fd, &str)) && error != -1)
+	while ((error = get_next_line(fd, &str)))
 	{
 		if (error == -1 || get_next_line(fd2, &str2) == -1)
 		{

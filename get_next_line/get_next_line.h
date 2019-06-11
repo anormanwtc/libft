@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:38:11 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/07 16:37:33 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/11 10:29:58 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <unistd.h>
 
-# define BUFF_SIZE 12
+# define BUFF_SIZE 100
 
 typedef struct	s_bmark
 {
