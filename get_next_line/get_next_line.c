@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:35:31 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/11 09:56:25 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/13 13:39:10 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,8 @@ int			get_next_line(const int fd, char **line)
 	if (place->fd != -2)
 		if (!(*line = ft_lstcat(lst)))
 			place->fd = -2;
+	if (place->fd == -1)
+		*line = NULL;
 	return (st_cleanup(&bookmark, place, &lst));
 }
 
