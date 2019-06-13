@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 09:33:08 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/23 14:21:46 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/13 15:47:45 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	ft_bzero(void *s, size_t n)
 
 	cnt = 0;
 	chars = s;
-	while (cnt < n)
-	{
-		chars[cnt] = 0;
-		cnt++;
-	}
+	if (s)
+		while (cnt < n)
+		{
+			chars[cnt] = 0;
+			cnt++;
+		}
 }

@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/26 13:21:09 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/31 10:01:14 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/13 17:14:17 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	if (!(substr = (char *)(malloc((len + 1) * sizeof(char)))))
 		return (NULL);
 	cnt = 0;
-	while (cnt < len)
+	while (cnt < len && s[cnt + (size_t)start])
 	{
 		substr[cnt] = s[cnt + (size_t)start];
 		cnt++;

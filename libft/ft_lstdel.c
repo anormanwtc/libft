@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 15:02:29 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/09 14:15:01 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/13 15:53:01 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 void	ft_lstdel(t_list **lst)
 {
-	if (*lst)
+	if (lst)
 	{
-		if ((*lst)->next)
-			ft_lstdel(&((*lst)->next));
-		ft_lstdelone(lst);
+		if (*lst)
+		{
+			if ((*lst)->next)
+				ft_lstdel(&((*lst)->next));
+			ft_lstdelone(lst);
+		}
+		*lst = NULL;
 	}
-	*lst = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 09:32:57 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/23 13:51:47 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/13 16:20:49 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ void	*ft_memset(void *b, int c, size_t len)
 	cnt = 0;
 	ch = (unsigned char)c;
 	vdb = b;
-	while (cnt < len)
-	{
-		vdb[cnt] = ch;
-		cnt++;
-	}
+	if (b)
+		while (cnt < len)
+		{
+			vdb[cnt] = ch;
+			cnt++;
+		}
 	return (b);
 }

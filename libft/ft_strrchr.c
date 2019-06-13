@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 13:26:37 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/24 15:55:53 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/13 17:12:14 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strrchr(const char *s, int c)
 
 	cnt = 0;
 	tmp = NULL;
+	if (!s)
+		return (NULL);
 	while (s[cnt] != '\0')
 	{
 		if (s[cnt] == (char)c)
