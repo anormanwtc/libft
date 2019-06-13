@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:44:46 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/13 13:45:21 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/13 13:46:11 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	main(void)
 			free(str1);
 		}
 	
-	if (!ft_strcmp(str1), "yes")
+	if (!ft_strcmp(str1, "yes"))
 	{
 		fd[0] = open("war-and-peace.txt", O_RDONLY);
 		while ((error = get_next_line(fd[0], &(str1))) && error != -1)
