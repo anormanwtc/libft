@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 17:01:43 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/13 16:01:07 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/13 18:02:50 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,8 @@ void	ft_lstdelmid(t_list **start, t_list *mid)
 		}
 	}
 }
+
+/*
+** Like the other lstdels it uses lstdelone which requires freeable content.
+** Use lstnew to ensure freeabele content or otherwise make sure
+*/
