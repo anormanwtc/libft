@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:44:46 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/13 13:38:11 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/13 13:45:21 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,27 @@ int	main(void)
 		printf("errored as expected\n\n");
 
 
-	printf("gnl on stdin\n");
+	printf("gnl on stdin. If yes, gnl will do the full war&peace\n");
 	if (get_next_line(0, &str1) == -1)
 		printf("errored??\n\n");
-		if (str1 && str1[0])
+		if (str1)
 		{
 			printf("%s\n", str1);
 			free(str1);
 		}
-
+	
+	if (!ft_strcmp(str1), "yes")
+	{
+		fd[0] = open("war-and-peace.txt", O_RDONLY);
+		while ((error = get_next_line(fd[0], &(str1))) && error != -1)
+		{
+			if (error != -1)
+				if (str1)
+				{
+					printf("%s\n", str1);
+					free(str1);
+				}
+		}
+	}
 	return (0);
 }
