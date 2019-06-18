@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:38:11 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/11 10:29:58 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/18 18:01:16 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ typedef struct	s_bmark
 	struct s_bmark	*next;
 }				t_bmark;
 
-int		get_next_line(const int fd, char **line);
+int				get_next_line(const int fd, char **line);
 
 #endif
