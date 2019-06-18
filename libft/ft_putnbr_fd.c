@@ -6,13 +6,13 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 14:31:01 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/18 16:49:49 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/18 16:56:11 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int nbr, int fd)
 {
 	int		neg;
 
