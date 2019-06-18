@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 14:31:01 by anorman           #+#    #+#             */
-/*   Updated: 2019/05/30 14:31:05 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/18 16:49:49 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	c;
+	int		neg;
 
-	if (n == -2147483648)
-		write(fd, "-2147483648", 11);
-	else
+	neg = 1;
+	if (nbr < 0)
 	{
-		if (n < 0)
-		{
-			write(fd, "-", 1);
-			n *= -1;
-		}
-		if ((n / 10) > 0)
-			ft_putnbr_fd((n / 10), fd);
-		c = (n % 10) + '0';
-		write(fd, &c, 1);
+		ft_putchar_fd('-', fd);
+		neg = -1;
 	}
+	if ((nbr / 10) * neg > 0)
+		ft_putnbr_fd((nbr / 10) * neg, fd);
+	ft_putchar_fd(((nbr % 10) * neg) + '0', fd);
 }
+
+/*
+** ((nbr % 10) * neg) + '0' works despite google disagreeing with the maths
+** that is google thinks -4 % 10 == 6 but its -4 % 10 == -4 here.
+*/
