@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 16:34:43 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/13 15:52:03 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/18 17:18:09 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ char	*ft_lstcat(t_list *lst)
 
 	temp = lst;
 	sumsize = 0;
-	if (!lst)
-		return (NULL);
 	while (temp)
 	{
 		sumsize = sumsize + (unsigned long)temp->content_size;
@@ -41,4 +39,6 @@ char	*ft_lstcat(t_list *lst)
 /*
 ** ft_lstcat requires null terminated content.
 ** I may consider doing ft_lstmemcat
+**
+** ft_lstcat returns an empty string if !lst as NULL is for malloc fail
 */
