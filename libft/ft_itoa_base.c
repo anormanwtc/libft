@@ -6,14 +6,14 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 14:40:35 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/19 16:38:08 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/19 17:24:51 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-static int	st_intlen(int n, unsigned int base)
+static int	st_intlen(long long n, size_t base)
 {
 	int	res;
 
@@ -23,12 +23,12 @@ static int	st_intlen(int n, unsigned int base)
 		res++;
 		n = n * -1;
 	}
-	while ((n = n / (int)base) > 0)
+	while ((n = n / (long long)base) > 0)
 		res++;
 	return (res);
 }
 
-char		*ft_itoa_base(int n, unsigned int base)
+char		*ft_itoa_base(long long n, size_t base)
 {
 	char	*ans;
 	int		cnt;
@@ -46,11 +46,11 @@ char		*ft_itoa_base(int n, unsigned int base)
 	}
 	while (cnt > -1 && ans[cnt] != '-')
 	{
-		if ((n % (int)base) * neg < 10)
-			ans[cnt--] = ((n % (int)base) * neg) + '0';
+		if ((n % (long long)base) * neg < 10)
+			ans[cnt--] = ((n % (long long)base) * neg) + '0';
 		else
-			ans[cnt--] = ((n % (int)base) * neg) - 10 + 'A';
-		n = (n / (int)base);
+			ans[cnt--] = ((n % (long long)base) * neg) - 10 + 'A';
+		n = (n / (long long)base);
 	}
 	return (ans);
 }
