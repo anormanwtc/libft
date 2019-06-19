@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:17:14 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/19 13:42:59 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/19 18:24:38 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 int		ft_vprintf(const char **format, va_list *ap)
 {
-	va_list cp;
 	int		charsum;
 	char	c;
 	char	*str;
 
 	(*format)++;
-	if (**format == 's')
+	if (ft_strchr("s", **format))
 	{
 		str = va_arg(*ap, char *);
 		ft_putstr(str);
 		(*format)++;
 	}
+	else if (ft_strchr("dDiouUxX", **format))
+		st_printnum(**format, ap);
+	else if (ft_strchr("cC", **format))
 	charsum = ft_strlen(str);
 	return (charsum);
 }
@@ -50,12 +52,14 @@ int		ft_printf(const char *format, ...)
 
 	va_start(ap, format);
 	charsum = 0;
+	if (ft_strstr(format, "%S")) /*og printf didnt do it when I tried*/
+		return (-1);
 	while (*format)
 	{
 		if (*format == '%' && format[1] != '%')
-			charsum += ft_vprintf(&format, &ap); //manages %s so far
-		if (*format == '%' && format[1] == '%') // manages %%
-			format++;
+			charsum += ft_vprintf(&format, &ap); /*manages %s so far*/
+		if ((*format == '%' || *format == '\\') && format[1] == '%')
+			format++; /*^ manages %% and \% */
 		if (*format)
 		{
 			write(1, format, 1);
