@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:44:46 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/13 13:55:22 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/19 13:07:26 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(void)
 	fd[0] = open("input1", O_RDONLY);
 	fd[1] = open("input2", O_RDONLY);
 	fd[2] = open("input3", O_RDONLY);
-	printf("3 files open at the same time going 1 line each till the first ends\n %d %d %d", fd[0], fd[1], fd[2]);
+	printf("3 files open at the same time going 1 line each till the first ends\n");
 	while ((error = get_next_line(fd[0], &(str1))))
 	{
 		if (error == -1 || get_next_line(fd[1], &(str2)) == -1
@@ -53,6 +53,11 @@ int	main(void)
 		}
 
 	}
+
+	printf("\npaused, enter to continue\n");
+	if (get_next_line(0, &str1) == -1)
+		printf("errored??\n\n");
+	free(str1);
 
 	printf("gnl given NULL as the **line\n");
 	if (get_next_line(fd[0], NULL) == -1)
