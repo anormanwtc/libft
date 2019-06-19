@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 14:40:35 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/19 15:25:50 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/19 16:38:08 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	st_intlen(int n, unsigned int base)
 		res++;
 		n = n * -1;
 	}
-	while ((n = n / base) > 0)
+	while ((n = n / (int)base) > 0)
 		res++;
 	return (res);
 }
