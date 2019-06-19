@@ -6,30 +6,35 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:17:14 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/19 13:17:27 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/19 13:42:59 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		ft_vprintf(va_list ap)
+int		ft_vprintf(const char **format, va_list *ap)
 {
 	va_list cp;
 	int		charsum;
 	char	c;
 	char	*str;
 
-	va_cp(cp, ap);
-	charsum = 0;
-	
-
+	(*format)++;
+	if (**format == 's')
+	{
+		str = va_arg(*ap, char *);
+		ft_putstr(str);
+		(*format)++;
+	}
+	charsum = ft_strlen(str);
 	return (charsum);
 }
 
 int		st_format(char c)
 {
-	char	*str = "diouxXDOU";
+	char	*str;
 
+	str = ft_strdup("diouxXDOU");
 	while (*str)
 	{
 		if (*str == c)
@@ -44,16 +49,28 @@ int		ft_printf(const char *format, ...)
 	va_list	ap;
 
 	va_start(ap, format);
+	charsum = 0;
 	while (*format)
 	{
-		if (format == '%')
+		if (*format == '%' && format[1] != '%')
+			charsum += ft_vprintf(&format, &ap); //manages %s so far
+		if (*format == '%' && format[1] == '%') // manages %%
+			format++;
+		if (*format)
 		{
-			ft_vprintf(format, p);
-			while (format 
-		if (*format == '\' && format[1] == '%')
-			format++
-		write(1, format, 1);
-		format++;
+			write(1, format, 1);
+			charsum++;
+			format++;
+		}
+	}
 	va_end(ap);
-	return (charnum);
+	return (charsum);
+}
+
+#include <stdio.h>
+
+int		main(void)
+{
+	ft_printf("Hello %% %s\n", "world");
+	return (0);
 }
