@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 14:47:41 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/19 17:25:59 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/19 18:09:16 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
 char			*ft_itoa(int n);
-char			*ft_itoa_base(int n, size_t base);
+char			*ft_itoa_base(long long n, size_t base);
+char			*ft_uitoa_base(unsigned long long n, size_t base);
 void			ft_putchar(char c);
 void			ft_putstr(char const *str);
 void			ft_putendl(char const *s);
