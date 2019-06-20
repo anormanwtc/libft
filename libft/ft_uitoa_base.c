@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 18:06:12 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/19 18:07:31 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/20 15:16:01 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	st_intlen(unsigned long long n, size_t base)
 	return (res);
 }
 
-char		*ft_itoa_base(unsigned long long n, size_t base)
+char		*ft_uitoa_base(unsigned long long n, size_t base)
 {
 	char	*ans;
 	int		cnt;
