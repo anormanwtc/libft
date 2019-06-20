@@ -6,43 +6,41 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:17:14 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/19 18:24:38 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/20 17:09:06 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		ft_vprintf(const char **format, va_list *ap)
+int		st_printchek(const char **format, va_list *ap)
+{
+	int		charsum;
+	char	c;
+
+	if (ft_strchr("+0#", **format))
+		c = **format++;
+	charsum = atoi(*format);
+	while (**format > 47 && **format < 58)
+		*format++;	
+	return (charsum);
+}
+
+int		ft_numstring(const char **format, va_list *ap)
 {
 	int		charsum;
 	char	c;
 	char	*str;
 
-	(*format)++;
-	if (ft_strchr("s", **format))
-	{
-		str = va_arg(*ap, char *);
-		ft_putstr(str);
-		(*format)++;
-	}
+	if ((charsum = atoi(*format)))
+		{
+			if (charsum < 0 && charsum != INT_MIN)
+				charsum *= -1;
+		}
 	else if (ft_strchr("dDiouUxX", **format))
-		st_printnum(**format, ap);
+		;
 	else if (ft_strchr("cC", **format))
-	charsum = ft_strlen(str);
+		charsum = ft_strlen(str);
 	return (charsum);
-}
-
-int		st_format(char c)
-{
-	char	*str;
-
-	str = ft_strdup("diouxXDOU");
-	while (*str)
-	{
-		if (*str == c)
-			return (1);
-	}
-	return (0);
 }
 
 int		ft_printf(const char *format, ...)
@@ -57,7 +55,7 @@ int		ft_printf(const char *format, ...)
 	while (*format)
 	{
 		if (*format == '%' && format[1] != '%')
-			charsum += ft_vprintf(&format, &ap); /*manages %s so far*/
+			charsum += st_printchek(&format, &ap); /*manages %s so far*/
 		if ((*format == '%' || *format == '\\') && format[1] == '%')
 			format++; /*^ manages %% and \% */
 		if (*format)
