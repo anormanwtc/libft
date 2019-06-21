@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:35:31 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/20 16:51:17 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/21 18:18:01 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,13 @@ static int	st_lstfill(const int fd, t_list **start, t_bmark *place)
 	len = 0;
 	if (!(str = (char *)malloc((BUFF_SIZE + 1) * sizeof(char))))
 		return (-2);
-	if (place->red && ft_strstr(place->red, "\n"))
-		return (st_prenewline(start, place));
 	while (!len && (red = (int)read(fd, str, BUFF_SIZE)) != -1 && red)
 	{
 		str[red] = '\0';
 		if (ft_strstr(str, "\n"))
 			len = ft_strlen((ft_strstr(str, "\n")));
 		if (!(nw = ft_lstnew(str, red - len + 1)))
-			return (-2);
+			place->fd = -2;
 		ft_lstaddend(start, nw);
 		ft_memcpy(&(nw->content[red - len]), "\0", 1);
 		if (len)
@@ -127,14 +125,17 @@ int			get_next_line(const int fd, char **line)
 		return (-1);
 	if (!(place = st_regplace(fd, &bookmark)))
 		return (-1);
-	if (place->red)
+	lst = NULL;
+	if (place->red && !ft_strchr(place->red, '\n'))
 	{
-		if (!(lst = ft_lstnew(place->red, ft_strlen(place->red) + 1)))
+		if (place->red && ft_strstr(place->red, "\n"))
+			place->fd = st_prenewline(&lst, place);
+		else if (!(lst = ft_lstnew(place->red, ft_strlen(place->red) + 1)))
 			place->fd = -2;
 	}
-	else
-		lst = NULL;
-	if (place->fd != -2)
+	if (place->red && ft_strchr(place->red, '\n'))
+		place->fd = st_prenewline(&lst, place);
+	else if (place->fd != -2)
 		place->fd = st_lstfill(fd, &lst, place);
 	if (place->fd != -2)
 		if (!(*line = ft_lstcat(lst)))
