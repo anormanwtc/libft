@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 15:02:29 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/13 17:59:19 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/21 12:57:42 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_lstdel(t_list **lst)
 }
 
 /*
-** I changed lst_delone to not take function del and 
+** I changed lst_delone to not take function del and
 ** DIY the deleting of lst->content
 ** as such, make sure lst->content is freeable
 ** or use my listnew which duplicates the given and so is freeable
