@@ -6,7 +6,7 @@
 #    By: anorman <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/21 16:00:27 by anorman           #+#    #+#              #
-#    Updated: 2019/06/20 14:20:26 by anorman          ###   ########.fr        #
+#    Updated: 2019/06/21 12:29:08 by anorman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,32 +28,39 @@ FILES = ft_lstaddend.c ft_memmove.c ft_strdel.c ft_strnstr.c\
 	ft_itoa_base.c ft_memcpy.c ft_strcmp.c ft_strnequ.c\
 	ft_lstadd.c ft_memdel.c ft_strcpy.c ft_strnew.c\
 
+SRCDIR = srcs
+
 OBJ = $(FILES:%.c=%.o)
+
+OBJDIR = objects
+
+HEADER = -I includes
 
 all: $(NAME)
 
 $(NAME):
-	@gcc -c $(FLAGS) $(FILES)
+	@gcc -c $(FLAGS) $(HEADER) $(FILES:%=$(SRCDIR)/%)
 	@echo "gcc -c $(FLAGS) FILES"
-	@ar -rcs $(NAME) $(OBJ)
+	mkdir -p $(OBJDIR)
+	@mv $(OBJ) $(OBJDIR)
+	@echo "mv OBJ $(OBJDIR)"
+	@ar -rcs $(NAME) $(OBJ:%=$(OBJDIR)/%)
 	@echo "ar -rcs $(NAME) OBJ"
 
 clean:
-	@rm -f $(OBJ)
-	@echo "rm -f OBJ"
+	rm -rf $(OBJDIR)
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo "rm -f $(NAME)"
+	rm -f $(NAME)
 
 gnl: all
 	make clean
 	mv $(NAME) ../get_next_line/
-	cp libft.h ../get_next_line/
+	cp includes/libft.h ../get_next_line/
 
 printf: all
 	make clean
 	mv $(NAME) ../printf/
-	cp libft.h ../printf/
+	cp includes/libft.h ../printf/
 
 re: fclean all
