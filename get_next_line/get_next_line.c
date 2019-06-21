@@ -6,12 +6,11 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:35:31 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/13 15:45:15 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/20 16:51:17 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "libft.h"
 
 static int	st_prenewline(t_list **start, t_bmark *place)
 {

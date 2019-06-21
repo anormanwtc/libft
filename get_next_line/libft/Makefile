@@ -6,7 +6,7 @@
 #    By: anorman <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/21 16:00:27 by anorman           #+#    #+#              #
-#    Updated: 2019/06/20 14:29:31 by anorman          ###   ########.fr        #
+#    Updated: 2019/06/21 12:05:34 by anorman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,14 @@ FILES = ft_lstaddend.c ft_memmove.c ft_strdel.c ft_strnstr.c\
 
 OBJ = $(FILES:%.c=%.o)
 
+SRCDIR = srcs
+
+HEADER = -I includes
+
 all: $(NAME)
 
 $(NAME):
-	@gcc -c $(FLAGS) -I includes $(FILES:%=includes/%)
+	@gcc -c $(FLAGS) -I includes $(FILES:%=$(SRCDIR)/%)
 	@echo "gcc -c $(FLAGS) -I includes FILES"
 	@ar -rcs $(NAME) $(OBJ)
 	@echo "ar -rcs $(NAME) OBJ"

@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 16:38:11 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/18 18:01:16 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/20 17:04:43 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # include <unistd.h>
+# include "libft/includes/libft.h"
 
 # define BUFF_SIZE 100
 
