@@ -17,7 +17,7 @@ static int	st_prenewline(t_list **start, t_bmark *place)
 	char	*temp;
 	int		linelen;
 
-	temp = ft_strstr(place->red, "\n");
+	temp = ft_strchr(place->red, '\n');
 	linelen = ft_strlen(place->red) - ft_strlen(temp);
 	if (!(*start = ft_lstnew(place->red, linelen + 1)))
 		return (-2);
@@ -45,19 +45,19 @@ static int	st_lstfill(const int fd, t_list **start, t_bmark *place)
 	while (!len && (red = (int)read(fd, str, BUFF_SIZE)) != -1 && red)
 	{
 		str[red] = '\0';
-		if (ft_strstr(str, "\n"))
-			len = ft_strlen((ft_strstr(str, "\n")));
+		if (ft_strchr(str, '\n'))
+			len = ft_strlen((ft_strchr(str, '\n')));
 		if (!(nw = ft_lstnew(str, red - len + 1)))
 			place->fd = -2;
 		ft_lstaddend(start, nw);
 		ft_memcpy(&(nw->content[red - len]), "\0", 1);
 		if (len)
-			place->red = ft_strsub(ft_strstr(str, "\n"), 1, len - 1);
+			place->red = ft_strsub(ft_strchr(str, '\n'), 1, len - 1);
 	}
 	free(str);
 	if (red == -1)
 		return ((place->fd = -2));
-	return ((place->fd = (red == 0 ? -1 : fd)));
+	return (red == 0 ? -1 : fd);
 }
 
 /*
