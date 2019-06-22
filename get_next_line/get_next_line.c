@@ -54,6 +54,7 @@ static int	st_lstfill(const int fd, t_list **start, t_bmark *place)
 		if (len)
 			place->red = ft_strsub(ft_strstr(str, "\n"), 1, len - 1);
 	}
+	free(str);
 	if (red == -1)
 		return ((place->fd = -2));
 	return ((place->fd = (red == 0 ? -1 : fd)));
@@ -128,9 +129,7 @@ int			get_next_line(const int fd, char **line)
 	lst = NULL;
 	if (place->red && !ft_strchr(place->red, '\n'))
 	{
-		if (place->red && ft_strstr(place->red, "\n"))
-			place->fd = st_prenewline(&lst, place);
-		else if (!(lst = ft_lstnew(place->red, ft_strlen(place->red) + 1)))
+		if (!(lst = ft_lstnew(place->red, ft_strlen(place->red) + 1)))
 			place->fd = -2;
 	}
 	if (place->red && ft_strchr(place->red, '\n'))
@@ -140,7 +139,7 @@ int			get_next_line(const int fd, char **line)
 	if (place->fd != -2)
 		if (!(*line = ft_lstcat(lst)))
 			place->fd = -2;
-	if (place->fd == -1)
+	if (place->fd == -1 && (!line || !line[0]))
 		*line = NULL;
 	return (st_cleanup(&bookmark, place, &lst));
 }
