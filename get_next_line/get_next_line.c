@@ -103,7 +103,7 @@ t_bmark		*st_regplace(const int fd, t_bmark **bookmark)
 int			st_cleanup(t_bmark **bm, t_bmark *pl, t_list **lst)
 {
 	ft_lstdel(lst);
-	if (pl->fd == -1)
+	if (pl->fd == -1 && (!pl->red || !pl->red[0]))
 	{
 		ft_lstdelmid((t_list **)bm, (t_list *)pl);
 		return (0);
