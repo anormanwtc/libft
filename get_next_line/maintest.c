@@ -25,12 +25,12 @@ int	main(void)
 	int		res[3];
 
 	fd[0] = open("input1", O_RDONLY);
-//	fd[1] = open("../../42FileChecker/srcs/gnl/gnl5_2.c", O_RDONLY);
-//	fd[2] = open("../../42FileChecker/srcs/gnl/gnl1_2.c", O_RDONLY);
 	fd[1] = open("input2", O_RDONLY);
 	fd[2] = open("input3", O_RDONLY);
+	res[1] = 1;
+	res[2] = 2;
 	printf("3 files open at the same time going 1 line each till the first ends\n %d %d %d\n", fd[0], fd[1], fd[2]);
-	while ((res[0] = get_next_line(fd[0], &(str1))))
+	while (res[1] || res[2] || res[0] = get_next_line(fd[0], &(str1)))
 	{
 		if (res[0] == -1 || (res[1] = get_next_line(fd[1], &(str2))) == -1
 			   || (res[2] = get_next_line(fd[2], &(str3))) == -1)
@@ -38,7 +38,7 @@ int	main(void)
 			printf("error");
 			return (0);
 		}
-	//	printf("-%d %d %d-\n", res[0], res[1], res[2]);
+		printf("- %d %d-\n", res[1], res[2]);
 		if (str1)
 		{
 			printf("%s\n", str1);
@@ -56,16 +56,16 @@ int	main(void)
 		}
 
 	}
-/*
+
 	printf("\npaused, enter to continue\n");
 	if (get_next_line(0, &str1) == -1)
 		printf("errored??\n\n");
 	free(str1);
-*/
+
 	printf("gnl given NULL as the **line\n");
 	if (get_next_line(fd[0], NULL) == -1)
 		printf("errored as expected\n\n");
-/*
+
 	close(fd[0]);
 	close(fd[1]);
 	close(fd[2]);
@@ -76,11 +76,6 @@ int	main(void)
 	printf("gnl on fd -1 and 666 (shouldnt exist)\n");
 	if (get_next_line(-1, &str1) == -1 && get_next_line(666, &str2) == -1)
 		printf("errored as expected\n\n");
-
-		printf("gnl given NULL as the **line\n");
-	if (get_next_line(fd[0], NULL) == -1)
-		printf("errored as expected\n\n");
-
 
 	printf("gnl on stdin. If yes, gnl will do the full war&peace\n");
 	if (get_next_line(0, &str1) == -1)
@@ -103,6 +98,6 @@ int	main(void)
 					free(str1);
 				}
 		}
-	}*/
+	}
 	return (0);
 }

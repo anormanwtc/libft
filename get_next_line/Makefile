@@ -15,14 +15,14 @@ all:
 	 make -C libft/
 	 clang -Wall -Wextra -Werror -I libft/includes -o get_next_line.o -c get_next_line.c
 	 clang -Wall -Wextra -Werror -I libft/includes -o maintest.o -c maintest.c
-	 clang -o test_gnl maintest.o get_next_line.o -I libft/includes -L libft/ -lft -g
+	 clang -o test_gnl maintest.o get_next_line.o -I libft/includes -L libft/ -lft 
 
 clean:
 	make -C libft/ clean
-	rm get_next_line.o maintest.o
+	rm -rf get_next_line.o maintest.o
 
 fclean: clean
 	make -C libft/ fclean
-	rm test_gnl
+	rm -rf test_gnl
 
 re: fclean all
