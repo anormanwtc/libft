@@ -40,9 +40,10 @@ static int	st_lstfill(const int fd, t_list **start, t_bmark *place)
 	int		len;
 
 	len = 0;
+	nw = NULL;
 	if (!(str = (char *)malloc((BUFF_SIZE + 1) * sizeof(char))))
 		return (-2);
-	while (!len && (red = (int)read(fd, str, BUFF_SIZE)) != -1 && red)
+	while (!len && (red = (int)read(fd, str, BUFF_SIZE)) > 0)
 	{
 		str[red] = '\0';
 		if (ft_strchr(str, '\n'))
@@ -57,7 +58,7 @@ static int	st_lstfill(const int fd, t_list **start, t_bmark *place)
 	free(str);
 	if (red == -1)
 		return ((place->fd = -2));
-	return (red == 0 ? -1 : fd);
+	return (red == 0 && !nw ? -1 : fd);
 }
 
 /*
