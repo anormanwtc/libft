@@ -58,7 +58,7 @@ static int	st_lstfill(const int fd, t_list **start, t_bmark *place)
 	free(str);
 	if (red == -1)
 		return ((place->fd = -2));
-	return (red == 0 && !nw ? -1 : fd);
+	return (red == 0 && !(*start) ? -1 : fd);
 }
 
 /*
@@ -128,10 +128,11 @@ int			get_next_line(const int fd, char **line)
 	if (!(place = st_regplace(fd, &bookmark)))
 		return (-1);
 	lst = NULL;
-	if (place->red && !ft_strchr(place->red, '\n'))
+	if (place->red && place->red[0] && !ft_strchr(place->red, '\n'))
 	{
 		if (!(lst = ft_lstnew(place->red, ft_strlen(place->red) + 1)))
 			place->fd = -2;
+		ft_strdel(&place->red);
 	}
 	if (place->red && ft_strchr(place->red, '\n'))
 		place->fd = st_prenewline(&lst, place);
