@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:44:46 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/24 13:01:02 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/24 13:30:22 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(void)
 	char	*str3;
 	int		fd[3];
 	int		res[3];
+	int		cnt;
 
 	fd[0] = open("input1", O_RDONLY);
 	fd[1] = open("input2", O_RDONLY);
@@ -41,17 +42,17 @@ int	main(void)
 		if (str1)
 		{
 			printf("%s\n", str1);
-			free(str1);
+			ft_strdel(&(str1));
 		}
 		if (str2)
 		{
 			printf("%s\n", str2);
-			free(str2);
+			ft_strdel(&(str2));
 		}
 		if (str3)
 		{
 			printf("%s\n", str3);
-			free(str3);
+			ft_strdel(&(str3));
 		}
 
 	}
@@ -59,7 +60,7 @@ int	main(void)
 	printf("\npaused, enter to continue\n");
 	if (get_next_line(0, &str1) == -1)
 		printf("errored??\n\n");
-	free(str1);
+	ft_strdel(&(str1));
 
 	printf("gnl given NULL as the **line\n");
 	if (get_next_line(fd[0], NULL) == -1)
@@ -82,9 +83,10 @@ int	main(void)
 		if (str1)
 		{
 			printf("%s\n", str1);
-			free(str1);
+			ft_strdel(&(str1));
 		}
 	
+	cnt = 0;
 	if (!ft_strcmp(str1, "yes"))
 	{
 		fd[0] = open("war-and-peace.txt", O_RDONLY);
@@ -93,10 +95,12 @@ int	main(void)
 			if (res[0] != -1)
 				if (str1)
 				{
+					cnt++;
 					printf("%s\n", str1);
-					free(str1);
+					ft_strdel(&(str1));
 				}
 		}
 	}
+	printf("%d\n", cnt);
 	return (0);
 }
