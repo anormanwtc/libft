@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 16:44:46 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/21 18:18:25 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/24 13:01:02 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(void)
 	res[1] = 1;
 	res[2] = 2;
 	printf("3 files open at the same time going 1 line each till the first ends\n %d %d %d\n", fd[0], fd[1], fd[2]);
-	while (res[1] || res[2] || res[0] = get_next_line(fd[0], &(str1)))
+	while (res[1] || res[2] || (res[0] = get_next_line(fd[0], &(str1))))
 	{
 		if (res[0] == -1 || (res[1] = get_next_line(fd[1], &(str2))) == -1
 			   || (res[2] = get_next_line(fd[2], &(str3))) == -1)
@@ -38,7 +38,6 @@ int	main(void)
 			printf("error");
 			return (0);
 		}
-		printf("- %d %d-\n", res[1], res[2]);
 		if (str1)
 		{
 			printf("%s\n", str1);
