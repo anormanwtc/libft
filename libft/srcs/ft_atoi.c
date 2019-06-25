@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 09:33:20 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/25 16:33:41 by anorman          ###   ########.fr       */
+/*   Updated: 2019/06/25 16:50:48 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	st_isblank(char c)
 	return (0);
 }
 
-static int	st_numcmp(char *str, char *max)
+static int	st_numcmp(const char *str, char *max)
 {
 	int over;
 
