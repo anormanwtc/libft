@@ -1,0 +1,12 @@
+
+
+compile (gcc etc -g) the etc must contain the .c files you want to look inside
+lldb a.out
+b functionname			breakpoint to stop at the first line of that function
+r						run
+n						next line
+c						next breakpoint
+p variablename			prints the variable, can be cast (char)num etc
+q						quit
+
+lldb auto stops at the line causing segfaults and similar.
