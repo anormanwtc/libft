@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_av_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/30 15:18:51 by anorman           #+#    #+#             */
-/*   Updated: 2019/07/29 13:34:10 by anorman          ###   ########.fr       */
+/*   Created: 2019/07/21 13:31:30 by anorman           #+#    #+#             */
+/*   Updated: 2019/07/21 13:37:49 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+char	**ft_av_split(char *av, int *ac)
 {
-	if (alst && new)
+	char	**ret;
+	int		i;
+
+	i = 0;
+	if (!(ret = ft_strsplit(av, ' ')))
 	{
-		new->next = *alst;
-		*alst = new;
+		ac = 0;
+		return (NULL);
 	}
+	while (ret[i])
+		i++;
+	*ac = i;
+	return (ret);
 }

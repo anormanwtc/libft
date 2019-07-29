@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_memreplace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/30 15:18:51 by anorman           #+#    #+#             */
-/*   Updated: 2019/07/29 13:34:10 by anorman          ###   ########.fr       */
+/*   Created: 2019/07/10 11:29:36 by anorman           #+#    #+#             */
+/*   Updated: 2019/07/15 14:09:53 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void	ft_memreplace(void **old, void *new)
 {
-	if (alst && new)
+	if (old)
 	{
-		new->next = *alst;
-		*alst = new;
+		free(*old);
+		*old = new;
 	}
 }

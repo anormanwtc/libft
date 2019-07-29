@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 14:40:35 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/20 15:15:54 by anorman          ###   ########.fr       */
+/*   Updated: 2019/07/03 16:17:07 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ char		*ft_itoa_base(long long n, size_t base)
 
 	cnt = st_intlen(n, base);
 	neg = 1;
-	if (!base || base > 36 || !(ans = (char *)malloc((cnt + 1) * sizeof(char))))
+	if (base < 2 || base > 36 ||
+			!(ans = (char *)malloc((cnt + 1) * sizeof(char))))
 		return (NULL);
 	ans[cnt--] = '\0';
 	if (n < 0)
@@ -49,7 +50,7 @@ char		*ft_itoa_base(long long n, size_t base)
 		if ((n % (long long)base) * neg < 10)
 			ans[cnt--] = ((n % (long long)base) * neg) + '0';
 		else
-			ans[cnt--] = ((n % (long long)base) * neg) - 10 + 'A';
+			ans[cnt--] = ((n % (long long)base) * neg) - 10 + 'a';
 		n = (n / (long long)base);
 	}
 	return (ans);

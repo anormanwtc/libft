@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_multimemdel.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/30 15:18:51 by anorman           #+#    #+#             */
-/*   Updated: 2019/07/29 13:34:10 by anorman          ###   ########.fr       */
+/*   Created: 2019/07/17 11:38:24 by anorman           #+#    #+#             */
+/*   Updated: 2019/07/21 13:40:03 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void		ft_multimemdel(int num, ...)
 {
-	if (alst && new)
-	{
-		new->next = *alst;
-		*alst = new;
-	}
+	int		i;
+	void	**input;
+	va_list	ap;
+
+	i = 0;
+	va_start(ap, num);
+	while (i++ < num)
+		ft_memdel(va_arg(ap, void **));
+	va_end(ap);
 }
