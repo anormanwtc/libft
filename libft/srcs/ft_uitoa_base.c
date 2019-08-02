@@ -6,7 +6,7 @@
 /*   By: anorman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 18:06:12 by anorman           #+#    #+#             */
-/*   Updated: 2019/06/25 16:47:12 by anorman          ###   ########.fr       */
+/*   Updated: 2019/07/03 16:17:15 by anorman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char		*ft_uitoa_base(unsigned long long n, size_t base)
 		if ((n % (unsigned long long)base) * neg < 10)
 			ans[cnt--] = ((n % (unsigned long long)base) * neg) + '0';
 		else
-			ans[cnt--] = ((n % (unsigned long long)base) * neg) - 10 + 'A';
+			ans[cnt--] = ((n % (unsigned long long)base) * neg) - 10 + 'a';
 		n = (n / (unsigned long long)base);
 	}
 	return (ans);
