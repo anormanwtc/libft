@@ -1,9 +1,14 @@
 
+Using LLDB to go through your code line by line to see when it behaves unexpectedly
+Using this to find the where helps to find the why. Very useful debugging.
+
+Method:
 
 compile (gcc etc -g) the etc must contain the .c files you want to look inside
-lldb a.out
+
+lldb a.out (variables)					variables can be given either place
 b functionname			breakpoint to stop at the first line of that function
-r						run
+r (variables)			run, 			variables can be given either place
 n						next line
 c						next breakpoint
 p variablename			prints the variable, can be cast (char)num etc
