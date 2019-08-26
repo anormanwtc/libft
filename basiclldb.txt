@@ -9,4 +9,7 @@ c						next breakpoint
 p variablename			prints the variable, can be cast (char)num etc
 q						quit
 
+To cast int *array like int array[len] so that it prints the whole thing
+p *(int(*)[len])array
+
 lldb auto stops at the line causing segfaults and similar.
