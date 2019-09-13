@@ -18,3 +18,6 @@ To cast int *array like int array[len] so that it prints the whole thing
 p *(int(*)[len])array
 
 lldb auto stops at the line causing segfaults and similar.
+
+if you want to pipe something:
+settings set target.input-path ../File/Path/etc
